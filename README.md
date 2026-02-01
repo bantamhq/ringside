@@ -1,6 +1,33 @@
 # Ringside
 
-A CLI tool that syncs git repositories into a local project directory.
+**Your AI context, your way.**
+
+Ringside is a CLI for curating and syncing AI skills, documentation, and context into your projects. Think of it as a personal package manager for everything that makes AI assistants more useful in your codebase.
+
+## Why Ringside?
+
+AI coding assistants work best with context — skills, prompts, documentation, and conventions that help them understand your project. Tools like [npx skills](https://github.com/vercel-labs/skills) are great for pulling from a shared ecosystem, but what about:
+
+- Your team's internal best practices?
+- That open-source skill repo that isn't in any registry?
+- Your personal collection of prompts you've refined over months?
+- A single folder from a massive monorepo?
+
+Ringside makes it easy to **bring context from anywhere** — GitHub, GitLab, self-hosted repos (via [Cutman](https://github.com/bantamhq/cutman)), or your local machine — and sync it exactly where you want it.
+
+Ringside isn't a replacement for npx skills — it's an extension. Use both. Pull popular skills from the ecosystem, then layer in your own.
+
+## Key Benefits
+
+**Pull from anywhere.** GitHub, GitLab, private repos, local folders. If it's a git repo, Ringside can sync it.
+
+**Extract exactly what you need.** Want one folder from a 500-skill monorepo? Ringside uses sparse checkout to grab just that path — fast and efficient.
+
+**One-way sync, zero conflicts.** Ringside creates snapshots, not submodules. Edit locally without worrying about merge conflicts or pushing back upstream. Need to make permanent changes? Just unlink.
+
+**Stay up to date.** `ringside status` tells you which sources have updates available. Sync when you're ready.
+
+**Parallel everything.** Multiple repos sync concurrently. Your time matters.
 
 ## Installation
 
@@ -23,6 +50,26 @@ ringside sync
 # Check for updates
 ringside status
 ```
+
+## Example: Building a Tauri Project
+
+Say you're building a Tauri app and want to bring in context from multiple sources:
+
+```bash
+# React best practices from the skills ecosystem
+ringside add vercel-labs/agent-skills/skills/react-best-practices --dest skills/react
+
+# Rust conventions from your team's internal repo
+ringside add git@gitlab.company.com:team/rust-conventions.git --dest skills/rust
+
+# Your personal prompt collection from a local folder
+ringside add ~/prompts/tauri-patterns --dest skills/tauri
+
+# Sync everything
+ringside sync
+```
+
+Your `.agents/` folder now has everything your AI assistant needs to understand your stack — pulled from three completely different sources.
 
 ## Commands
 
@@ -181,11 +228,10 @@ commit = "7fd1a60b01f91b314f59955a4e4d4e80d8edf11d"
 synced_at = "2024-01-15T10:30:00+00:00"
 ```
 
-## Features
+## Roadmap
 
-- **Parallel syncing** - Multiple repositories sync concurrently
-- **Sparse checkout** - Only downloads the specific path you need (faster for large repos)
-- **Lock file** - Tracks synced commits for update detection
-- **GitHub shorthand** - Use `owner/repo` instead of full URLs
-- **Path extraction** - Sync specific folders from repositories
-- **Branch/tag support** - Pin to specific refs
+- **Templates** — Define reusable source bundles (e.g., a "Tauri" template that pulls both Rust and React skills with one command)
+
+## License
+
+MIT

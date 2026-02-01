@@ -1,6 +1,6 @@
 [package]
 name = "ringside"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2024"
 description = "A CLI tool that syncs git repositories into a local project directory"
 license = "MIT"
@@ -20,3 +20,8 @@ fs_extra = "1.3"
 regex = "1.10"
 rayon = "1.10"
 chrono = { version = "0.4", features = ["serde"] }
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
