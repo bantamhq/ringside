@@ -38,7 +38,7 @@ cargo install --path .
 ## Quick Start
 
 ```bash
-# Initialize config (creates .ringside/config.toml)
+# Initialize config (creates ringside.toml)
 ringside init
 
 # Add a source
@@ -75,7 +75,7 @@ Your `.agents/` folder now has everything your AI assistant needs to understand 
 
 ### `ringside init [ROOT]`
 
-Initialize a new `.ringside/config.toml` file.
+Initialize a new `ringside.toml` file.
 
 | Argument | Description | Default |
 |----------|-------------|---------|
@@ -88,7 +88,7 @@ ringside init .claude      # root = ".claude"
 
 ### `ringside add <URL> [--dest <PATH>]`
 
-Add a new source to the config. Creates `.ringside/config.toml` if it doesn't exist.
+Add a new source to the config. Creates `ringside.toml` if it doesn't exist.
 
 | Argument | Description |
 |----------|-------------|
@@ -193,7 +193,7 @@ ringside add /path/to/local/repo --dest local
 
 ## Configuration
 
-### `.ringside/config.toml`
+### `ringside.toml`
 
 ```toml
 root = ".agents"
@@ -217,7 +217,7 @@ ref = "main"
 | `sources[].dest` | Destination path within root | No (defaults to root) |
 | `sources[].ref` | Branch or tag to clone | No (defaults to default branch) |
 
-### `.ringside/lock.toml`
+### `ringside.lock`
 
 Automatically maintained lock file tracking synced commits:
 

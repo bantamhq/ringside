@@ -18,7 +18,7 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Initialize a new .ringside/config.toml file
+    /// Initialize a new ringside.toml file
     Init {
         /// Root directory for synced sources (default: .agents)
         root: Option<String>,

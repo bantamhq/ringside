@@ -16,7 +16,7 @@ pub fn run() -> Result<()> {
     let config = Config::load()?;
 
     if config.sources.is_empty() {
-        println!("No sources configured. Add sources to .ringside/config.toml");
+        println!("No sources configured. Add sources to ringside.toml");
         return Ok(());
     }
 

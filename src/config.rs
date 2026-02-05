@@ -4,8 +4,7 @@ use std::path::Path;
 
 use crate::error::{Result, RingsideError};
 
-pub const RINGSIDE_DIR: &str = ".ringside";
-pub const CONFIG_FILE: &str = ".ringside/config.toml";
+pub const CONFIG_FILE: &str = "ringside.toml";
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Config {
@@ -46,11 +45,6 @@ impl Config {
         let path = Path::new(CONFIG_FILE);
         if path.exists() {
             return Self::load();
-        }
-
-        let dir = Path::new(RINGSIDE_DIR);
-        if !dir.exists() {
-            fs::create_dir_all(dir)?;
         }
 
         let config = Self::default();

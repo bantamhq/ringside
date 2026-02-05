@@ -1,12 +1,10 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;
-use std::path::Path;
 
-use crate::config::RINGSIDE_DIR;
 use crate::error::Result;
 
-const LOCK_FILE: &str = ".ringside/lock.toml";
+const LOCK_FILE: &str = "ringside.lock";
 
 #[derive(Debug, Default, Serialize, Deserialize)]
 pub struct LockFile {
@@ -33,11 +31,6 @@ impl LockFile {
     }
 
     pub fn save(&self) -> Result<()> {
-        let dir = Path::new(RINGSIDE_DIR);
-        if !dir.exists() {
-            fs::create_dir_all(dir)?;
-        }
-
         let content = toml::to_string_pretty(self)?;
         fs::write(LOCK_FILE, content)?;
         Ok(())
